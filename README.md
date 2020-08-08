@@ -1,5 +1,3 @@
-### Hi there 👋
-
 #### General information
 
 - 🔭 I’m currently working on AWS (mostly serverless), Python, Go and React
