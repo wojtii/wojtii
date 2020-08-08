@@ -1,0 +1,16 @@
+* Books IT related
+
+** Books I have read and enjoyed:
+
+- Clean Code. Robert C. Martin
+- Practical Common Lisp. Peter Seibel
+- The Cathedral and the Bazaar. Eric Raymond
+- Even a Geek Can Speak. Joey Asher
+
+** Book I want to read:
+
+- The Psychology Of Computer Programming. Gerald M. Weinberg
+- The Pragmatic Programmer. Andrew Hunt
+- Style: Lessons in Clarity and Grace. Joseph Bizup
+- Refactoring: Improving the Design of Existing Code. Martin Fowler
+- Domain-driven design. Eric Evans

@@ -1,0 +1,33 @@
+#+TITLE: my linux
+
+* TLDR
+Currently I use Ubuntu and macOS with emacs and firefox. Thats all I need and I am in love with this simple setup.
+
+* Distributions
+** Arch / Manjaro
+- probably my favourites due to pacman
+** Ubuntu
+- my daily driver/production os, since it never let me down
+
+* Window managers and desktop environments
+Since I have started using emacs I noticed I don't need sophisticated wm/de
+** Gnome
+- my daily driver, only change I need is mapping capslock to ctrl/esc with this script:
+  #+BEGIN_SRC sh
+setxkbmap -option ctrl:nocaps && xcape -e 'Control_L=Escape'
+  #+END_SRC
+** Xmonad
+- I have used it daily, wish it had better integration with polybar
+** Exwm
+- played with it a little but it is not mature enough to be on my production machine
+** Other
+- I have tried things like xfce, kde, i3 but I could not set up a satisfying
+  environment there
+
+* Programs
+** Emacs
+- main text editor
+- doom emacs
+** Firefox
+- browser
+- with vimium plugin
