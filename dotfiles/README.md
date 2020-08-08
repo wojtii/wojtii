@@ -1,7 +1,7 @@
 # Overview
 
 The idea behind my dotfiles is to keep them as simple as possible. To achieve
-that I use [one org file](dotfiles/dotfiles.org) with tangling. This
+that I use [one org file](dotfiles.org) with tangling. This
 allows me to have a clean and productive environment without spending a lot of
 time configuring it (which I did in past 🙁).
 
