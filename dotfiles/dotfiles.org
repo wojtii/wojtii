@@ -531,3 +531,19 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 #+END_SRC
+* starship
+#+BEGIN_SRC toml :tangle ~/.config/starship.toml
+prompt_order=[
+  "directory",
+  "git_branch",
+  "cmd_duration",
+  "character",
+]
+
+[character]
+symbol = "λ"
+
+[cmd_duration]
+min_time = 10
+
+#+END_SRC
