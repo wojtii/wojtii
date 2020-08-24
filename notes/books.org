@@ -2,6 +2,7 @@
 
 ** Books I have read and enjoyed:
 
+- Software Engineering at Google: Lessons Learned from Programming Over Time
 - Clean Code. Robert C. Martin
 - Practical Common Lisp. Peter Seibel
 - The Cathedral and the Bazaar. Eric Raymond
