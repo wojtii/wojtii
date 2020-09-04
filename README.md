@@ -2,7 +2,7 @@
 
 - 🔭 I’m currently working on AWS (mostly serverless), Python, Go and React
 - 🌱 I’m currently learning Rust, React and Tensorflow
-- 📫 How to reach me: ✉️ wojciechniedbala@pm.me
+- 📫 How to reach me: wojciechniedbala@pm.me
 - ⚡ Fun fact: Chess addict ♘♝
 - 💻 Macbook Pro 13
 - 💻 Lenovo Yoga 710 (Ubuntu 20)
@@ -15,7 +15,7 @@
 #### Tools
 
 <img align="left" alt="Emacs" title="Emacs" width="32px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/emacs/emacs.png"/>
-<img align="left" alt="Insomnia" title="Insomnia" width="32px" src="https://github.com/Kong/insomnia.rest/blob/master/static/images/icon-small.png"/>
+<img align="top" alt="Insomnia" title="Insomnia" width="32px" src="https://github.com/Kong/insomnia.rest/blob/master/static/images/icon-small.png"/>
 
 #### Languages
 
