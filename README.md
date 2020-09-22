@@ -1,7 +1,7 @@
 #### General information
 
 - 🔭 I’m currently working on AWS (mostly serverless), Python, Go and React
-- 🌱 I’m currently learning Rust, React and Tensorflow
+- 🌱 I’m currently learning Elm, Rust, React and Tensorflow
 - 📫 How to reach me: wojciechniedbala@pm.me
 - ⚡ Fun fact: Chess addict ♘♝
 - 💻 Macbook Pro 13
@@ -40,4 +40,6 @@
   <img title="Docker" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png"/>
   <img title="TensorFlow" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/tensorflow/tensorflow.png"/>
   <img title="GraphQL" width="32" src="https://raw.githubusercontent.com/github/explore/5c058a388828bb5fde0bcafd4bc867b5bb3f26f3/topics/graphql/graphql.png"/>
+  <img title="Elasticsearch" width="32" src="https://raw.githubusercontent.com/github/explore/d73b58ded658144cd29547485b8537306012eb86/topics/elasticsearch/elasticsearch.png"/>
+  <img title="MongoDB" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png"/>
 </code>
