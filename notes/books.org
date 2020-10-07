@@ -16,3 +16,4 @@
 - Style: Lessons in Clarity and Grace. Joseph Bizup
 - Refactoring: Improving the Design of Existing Code. Martin Fowler
 - Domain-driven design. Eric Evans
+- A Philosophy of Software Design. John Ousterhout
