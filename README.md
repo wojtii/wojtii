@@ -1,7 +1,7 @@
 #### General information
 
 - 🔭 I’m currently working on AWS (mostly serverless), Python, Go and React
-- 🌱 I’m currently learning Rust, React and Tensorflow
+- 🌱 I’m currently learning Rust, Kotlin, Cassandra and Tensorflow
 - 📫 How to reach me: wojciechniedbala@pm.me
 - ⚡ Fun fact: Chess addict ♘♝
 - 💻 Macbook Pro 13
