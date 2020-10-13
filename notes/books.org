@@ -8,11 +8,11 @@
 - Practical Common Lisp. Peter Seibel
 - The Cathedral and the Bazaar. Eric Raymond
 - Even a Geek Can Speak. Joey Asher
+- The Pragmatic Programmer. Andrew Hunt
 
 ** Book I want to read:
 
 - The Psychology Of Computer Programming. Gerald M. Weinberg
-- The Pragmatic Programmer. Andrew Hunt
 - Style: Lessons in Clarity and Grace. Joseph Bizup
 - Refactoring: Improving the Design of Existing Code. Martin Fowler
 - Domain-driven design. Eric Evans
