@@ -13,13 +13,13 @@
 
 ,** theme
 ,#+BEGIN_SRC emacs-lisp
-(setq doom-theme 'doom-wilmersdorf)
+(setq doom-theme 'doom-nord-light)
 ,#+END_SRC
 
 ,** font
 ,#+BEGIN_SRC emacs-lisp
 (setq doom-font
-      (font-spec :family "Iosevka Nerd Font" :size 16))
+     (font-spec :family "JetBrains Mono" :size 14))
 ,#+END_SRC
 
 ,** modeline
@@ -245,6 +245,11 @@ letter of camelcase lowercase."
 ,#+BEGIN_SRC emacs-lisp
 (setq emmet-expand-jsx-className? t)
 ,#+END_SRC
+,** writeroom
+,#+BEGIN_SRC emacs-lisp
+(setq writeroom-width 120)
+
+,#+END_SRC
 ,* languages
 ,** js
 ,#+BEGIN_SRC emacs-lisp
@@ -441,12 +446,9 @@ this should be temporary
 #+BEGIN_SRC emacs-lisp :tangle ~/.doom.d/packages.el
 ;; -*- no-byte-compile: t; -*-
 ;;; ~/.doom.d/packages.el
-(package! ox-reveal)
-(package! tldr)
 (package! smooth-scrolling)
 (package! graphql-mode)
 (package! evil-escape :disable t)
-(package! literate-calc-mode)
 #+END_SRC
 * zsh
 #+BEGIN_SRC sh :tangle ~/.zshrc
