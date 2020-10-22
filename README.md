@@ -1,7 +1,7 @@
 #### General information
 
 - 🔭 I’m currently working on AWS (mostly serverless), Python, Go and React
-- 🌱 I’m currently learning Rust, React and Tensorflow
+- 🌱 I’m currently learning Rust, Kotlin, Cassandra and Tensorflow
 - 📫 How to reach me: wojciechniedbala@pm.me
 - ⚡ Fun fact: Chess addict ♘♝
 - 💻 Macbook Pro 13
@@ -15,7 +15,10 @@
 #### Tools
 <code>
   <img title="Emacs" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/emacs/emacs.png"/>
+  <img title="JetBrains - PyCharm & GoLand" width="32" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/JetBrains_Logo_2016.svg/1920px-JetBrains_Logo_2016.svg.png"/>
   <img title="Insomnia" width="32" src="https://github.com/Kong/insomnia.rest/blob/master/static/images/icon-small.png"/>
+  <img title="Linux" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/linux/linux.png"/>
+  <img title="macOS" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/macos/macos.png"/>
 </code>
 
 #### Languages
@@ -27,7 +30,6 @@
   <img title="Rust" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/rust/rust.png"/>
   <img title="Elixir" width="32" src="https://raw.githubusercontent.com/github/explore/d106aa3f6fa091ab80ab5c8cf0d931baff3caaea/topics/elixir/elixir.png"/>
   <img title="Erlang" width="32" src="https://raw.githubusercontent.com/github/explore/e3f071c9faa00fc2285ae33185bb61f4c42968b2/topics/erlang/erlang.png"/>
-  <img title="Haskell" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/haskell/haskell.png"/>
   <img title="Lisp" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/lisp/lisp.png"/>
   <img title="Prolog" width="32" src="https://www.swi-prolog.org/icons/swipl.png"/>
 </code>
