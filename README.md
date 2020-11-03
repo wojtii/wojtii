@@ -1,7 +1,7 @@
 #### General information
 
 - 🔭 I’m currently working on AWS (mostly serverless), Python, Go and React
-- 🌱 I’m currently learning Rust, Kotlin, Cassandra and Tensorflow
+- 🌱 I’m currently learning Rust, Kotlin and Cassandra
 - 📫 How to reach me: wojciechniedbala@pm.me
 - ⚡ Fun fact: Chess addict ♘♝
 - 💻 Macbook Pro 13
@@ -13,6 +13,7 @@
 - 🇨🇳 beginner
 
 #### Tools
+
 <code>
   <img title="Emacs" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/emacs/emacs.png"/>
   <img title="JetBrains - PyCharm & GoLand" width="32" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/JetBrains_Logo_2016.svg/1920px-JetBrains_Logo_2016.svg.png"/>
@@ -22,6 +23,7 @@
 </code>
 
 #### Languages
+
 <code>
   <img title="Go" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/go/go.png"/>
   <img title="Python" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png"/>
@@ -35,6 +37,7 @@
 </code>
 
 #### Technologies
+
 <code>
   <img title="React" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png"/>
   <img title="AWS" width="32" src="https://raw.githubusercontent.com/github/explore/fbceb94436312b6dacde68d122a5b9c7d11f9524/topics/aws/aws.png"/>
