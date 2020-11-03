@@ -1,0 +1,275 @@
+#+TITLE: config
+* settings
+** me
+👋👋👋
+#+BEGIN_SRC emacs-lisp
+(setq user-full-name "wojtii"
+      user-mail-address "wojciechniedbala@pm.me")
+#+END_SRC
+
+** theme
+#+BEGIN_SRC emacs-lisp
+(setq doom-theme 'doom-one)
+#+END_SRC
+
+** font
+#+BEGIN_SRC emacs-lisp
+(setq doom-font
+     (font-spec :family "JetBrains Mono" :size 14))
+#+END_SRC
+
+** modeline
+#+BEGIN_SRC emacs-lisp
+;; (setq doom-modeline-vcs-max-length 16)
+ #+END_SRC
+
+** initial mode
+#+BEGIN_SRC emacs-lisp
+(setq initial-major-mode 'org-mode)
+#+END_SRC
+** do not truncate lines
+#+BEGIN_SRC emacs-lisp
+(setq truncate-lines nil)
+ #+END_SRC
+
+** launch fullscreen
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'default-frame-alist
+             '(fullscreen . maximized))
+#+END_SRC
+
+** transparency
+#+BEGIN_SRC emacs-lisp
+(defun toggle-transparency ()
+  (interactive)
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (set-frame-parameter
+     nil 'alpha
+     (if (eql (cond ((numberp alpha) alpha)
+                    ((numberp (cdr alpha)) (cdr alpha))
+                    ((numberp (cadr alpha)) (cadr alpha)))
+              100)
+         '(50 . 50) '(100 . 100)))))
+(map! :m "C-c t" #'toggle-transparency)
+#+END_SRC
+
+** auto revert
+#+BEGIN_SRC emacs-lisp
+(global-auto-revert-mode t)
+(setq auto-revert-check-vc-info t)
+#+END_SRC
+
+** trailing whitespaces
+#+BEGIN_SRC emacs-lisp
+(add-hook! before-save-hook
+           'delete-trailing-whitespace)
+#+END_SRC
+
+** resizing
+#+BEGIN_SRC emacs-lisp
+(map!
+ :m "M-<down>" #'evil-window-decrease-height
+ :m "M-<up>" #'evil-window-increase-height
+ :m "M-<left>" #'evil-window-decrease-width
+ :m "M-<right>" #'evil-window-increase-width)
+#+END_SRC
+
+** disable right alt
+#+BEGIN_SRC emacs-lisp
+(setq ns-right-alternate-modifier nil)
+#+END_SRC
+
+** terminal
+#+BEGIN_SRC emacs-lisp
+(setq explicit-shell-file-name "/bin/zsh")
+(map! :m "C-," (lambda ()
+                 (interactive)
+                 (vterm explicit-shell-file-name)))
+
+(setq kill-buffer-query-functions
+      (delq 'process-kill-buffer-query-function kill-buffer-query-functions))
+#+END_SRC
+
+** prolog instead of perl
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist
+             '("\\.\\(pl\\|pro\\|lgt\\)" . prolog-mode))
+#+END_SRC
+
+** toggle camel under
+Function for toggling between camel and snake cases,
+copied from https://stackoverflow.com/a/58275432
+#+BEGIN_SRC emacs-lisp
+(defun toggle-camelcase-underscores (first-lower-p)
+  "Toggle between camelcase and underscore notation for the
+symbol at point. If prefix arg, C-u, is supplied, then make first
+letter of camelcase lowercase."
+  (interactive "P")
+  (save-excursion
+    (let* ((bounds (bounds-of-thing-at-point 'symbol))
+           (start (car bounds))
+           (end (cdr bounds))
+           (currently-using-underscores-p (progn (goto-char start)
+                                                 (re-search-forward "_" end t))))
+      (if currently-using-underscores-p
+          (progn
+            (replace-string "_" " " nil start end)
+            (upcase-initials-region start end)
+            (replace-string " " "" nil start end)
+            (when first-lower-p
+              (downcase-region start (1+ start))))
+        (replace-regexp "\\([A-Z]\\)" "_\\1" nil (1+ start) end)
+        (downcase-region start (cdr (bounds-of-thing-at-point 'symbol)))))))
+#+END_SRC
+
+** viewing big files
+#+BEGIN_SRC emacs-lisp
+(defun my-find-file-check-make-large-file-read-only-hook ()
+  "If a file is over a given size, make the buffer read only."
+  (when (> (buffer-size) (* 1024 1024))
+    (setq buffer-read-only t)
+    (buffer-disable-undo)
+    (fundamental-mode)))
+
+(add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
+#+END_SRC
+
+** internal border
+#+BEGIN_SRC emacs-lisp
+;; (set-frame-parameter nil 'internal-border-width 4)
+#+END_SRC
+
+** eldoc
+#+BEGIN_SRC emacs-lisp
+;; (setq global-eldoc-mode 0)
+#+END_SRC
+
+** mouse in nw
+#+BEGIN_SRC emacs-lisp
+;; (xterm-mouse-mode 1)
+#+END_SRC
+
+* packages
+** treemacs
+#+BEGIN_SRC emacs-lisp
+(setq treemacs-position 'right)
+#+END_SRC
+** flyspell
+#+BEGIN_SRC emacs-lisp
+;; (remove-hook! '(org-mode-hook)
+;;   #'flyspell-mode)
+#+END_SRC
+** highlight-indent-guides
+⋅ as indent character
+#+BEGIN_SRC emacs-lisp
+(setq highlight-indent-guides-method 'character
+      highlight-indent-guides-responsive 'top
+      highlight-indent-guides-character ?\⋅)
+(remove-hook! '(prog-mode-hook)
+  #'highlight-indent-guides-mode)
+(remove-hook! '(org-mode-hook)
+  #'highlight-indent-guides-mode)
+#+END_SRC
+
+** company
+#+BEGIN_SRC emacs-lisp
+(after! company
+  (set-company-backend! 'erlang-mode 'company-dabbrev-code)
+  (add-hook 'after-init-hook #'global-company-mode))
+
+(setq
+ company-idle-delay 0
+ company-show-numbers t)
+#+END_SRC
+** avy
+#+BEGIN_SRC emacs-lisp
+(setq avy-all-windows t)
+#+END_SRC
+** lsp
+#+BEGIN_SRC emacs-lisp
+(setq
+ lsp-pyls-plugins-pycodestyle-max-line-length 120
+ lsp-signature-auto-activate nil
+ lsp-flycheck-live-reporting nil)
+#+END_SRC
+** lsp-ui
+#+BEGIN_SRC emacs-lisp
+(setq
+ lsp-ui-sideline-enable nil
+ lsp-ui-sideline-show-diagnostics nil)
+#+END_SRC
+** org
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (setq org-todo-keywords
+        '((sequence
+           "TODO(t)"
+           "IN_PROGRESS(i)"
+           "|"
+           "DONE(d)"
+           "CANCELLED(c)")))
+
+  (map!
+   :n "M-j" #'org-metadown
+   :n "M-k" #'org-metaup
+   :n "M-h" #'org-do-demote
+   :n "M-l" #'org-do-promote)
+
+  (let ((my-org-file "~/priv/cap.org"))
+    (setq org-agenda-files (list my-org-file))
+    (setq org-capture-templates
+          `(("t" "todo" entry (file+headline ,my-org-file "todos")
+             "* TODO %?\n")
+            ("w" "work todo" entry (file+headline ,my-org-file "work todos")
+             "* TODO %?\n")
+            ("d" "daily" entry (file+headline ,my-org-file "daily")
+             "* %U\n** TODO %?\n" :prepend t)
+            ("i" "idea" entry (file+headline ,my-org-file "ideas")
+             "* %?\n")))))
+
+#+END_SRC
+
+** flycheck
+#+BEGIN_SRC emacs-lisp
+(setq flycheck-flake8-maximum-line-length 120)
+#+END_SRC
+** projectile
+#+BEGIN_SRC emacs-lisp
+(add-hook 'projectile-after-switch-project-hook (lambda ()
+                                                  (projectile-invalidate-cache nil)))
+(map! :leader
+      (:prefix-map ("p" . "project")
+        :desc "Project info" "i" #'projectile-project-info))
+#+END_SRC
+** smooth-scrolling
+#+BEGIN_SRC emacs-lisp
+;; (smooth-scrolling-mode t)
+#+END_SRC
+** emmet
+#+BEGIN_SRC emacs-lisp
+(setq emmet-expand-jsx-className? t)
+#+END_SRC
+** writeroom
+#+BEGIN_SRC emacs-lisp
+(setq writeroom-width 120)
+
+#+END_SRC
+* languages
+** js
+#+BEGIN_SRC emacs-lisp
+(setq
+ js-indent-level 2
+ typescript-indent-level 2)
+#+END_SRC
+** markdown
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist
+             '("\\.\\(mdx\\)" . markdown-mode))
+#+END_SRC
+** react completion fix
+this should be temporary
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode))
+;; (add-hook 'rjsx-mode-hook 'typescript-mode)
+;; (add-hook 'rjsx-mode-hook 'emmet-mode)
+#+END_SRC

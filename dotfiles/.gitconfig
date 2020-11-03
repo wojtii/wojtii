@@ -1,0 +1,14 @@
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[url "ssh://git@bitbucket.org/"]
+	insteadOf = https://bitbucket.org/
+[user]
+	name = wojtii
+	email = wojciechniedbala@pm.me
+[alias]
+	co = checkout
+	c = commit
+	s = status
+	a = add
+[github]
+	user = wojtii

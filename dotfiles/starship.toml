@@ -1,0 +1,12 @@
+prompt_order=[
+  "directory",
+  "git_branch",
+  "cmd_duration",
+  "character",
+]
+
+[character]
+symbol = "λ"
+
+[cmd_duration]
+min_time = 10
