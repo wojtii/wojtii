@@ -7,7 +7,7 @@
 - 💻 Macbook Pro 13
 - 💻 Lenovo Yoga 710 (Ubuntu 20)
 - 📱 iPhone 12 mini
-- 🇵🇱 proficient
+- 🇵🇱 native
 - 🇬🇧 advanced
 - 🇪🇸 🇯🇵 🇫🇷 beginner
 
