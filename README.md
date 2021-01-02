@@ -9,8 +9,7 @@
 - 📱 Pixel 3a (GrapheneOS)
 - 🇵🇱 proficient
 - 🇬🇧 advanced
-- 🇪🇸 beginner
-- 🇨🇳 beginner
+- 🇪🇸, 🇯🇵, 🇫🇷 beginner
 
 #### Tools
 
@@ -25,11 +24,16 @@
 #### Languages
 
 <code>
-  <img title="Go" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/go/go.png"/>
   <img title="Python" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png"/>
+  <img title="Go" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/go/go.png"/>
   <img title="JavaScript" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png"/>
   <img title="TypeScript" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png"/>
   <img title="Rust" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/rust/rust.png"/>
+</code>
+
+#### Other languages that I like but rarely use
+
+<code>
   <img title="Elixir" width="32" src="https://raw.githubusercontent.com/github/explore/d106aa3f6fa091ab80ab5c8cf0d931baff3caaea/topics/elixir/elixir.png"/>
   <img title="Erlang" width="32" src="https://raw.githubusercontent.com/github/explore/e3f071c9faa00fc2285ae33185bb61f4c42968b2/topics/erlang/erlang.png"/>
   <img title="Lisp" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/lisp/lisp.png"/>
