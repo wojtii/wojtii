@@ -1,15 +1,15 @@
 #### General information
 
 - 🔭 I’m currently working on AWS (mostly serverless), Python, Go and React
-- 🌱 I’m currently learning Rust, Kotlin and Cassandra
+- 🌱 I’m currently learning Rust, Cassandra
 - 📫 How to reach me: wojciechniedbala@pm.me
 - ⚡ Fun fact: Chess addict ♘♝
 - 💻 Macbook Pro 13
 - 💻 Lenovo Yoga 710 (Ubuntu 20)
-- 📱 Pixel 3a (GrapheneOS)
+- 📱 iPhone 12 mini
 - 🇵🇱 proficient
 - 🇬🇧 advanced
-- 🇪🇸, 🇯🇵, 🇫🇷 beginner
+- 🇪🇸 🇯🇵 🇫🇷 beginner
 
 #### Tools
 
