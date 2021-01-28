@@ -6,7 +6,7 @@
 - ⚡ Fun fact: Chess addict ♘♝
 - 💻 Macbook Pro 13
 - 💻 Lenovo Yoga 710 (Ubuntu 20)
-- 📱 iPhone 12 mini
+- 📱 iPhone 12
 - 🇵🇱 native
 - 🇬🇧 advanced
 - 🇪🇸 🇯🇵 🇫🇷 beginner
