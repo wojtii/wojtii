@@ -70,12 +70,28 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'sheerun/vim-polyglot'
 
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 " theme
 colorscheme one
 set background=light
-let g:lightline = { 'colorscheme': 'one' }
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified', 'gitbranch' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
+
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  return winwidth(0) > 120 ? blame : ''
+endfunction
 
 " fzf
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
@@ -88,6 +104,23 @@ let g:fzf_action = { 'ctrl-s': 'split', 'ctrl-v': 'vsplit' }
 nmap <Leader><Leader>s <Plug>(easymotion-overwin-f2)
 
 " coc
+let g:coc_global_extensions = [
+    \'coc-json',
+    \'coc-git',
+    \'coc-snippets',
+    \'coc-prettier',
+    \'coc-eslint',
+    \'coc-tsserver',
+    \'coc-python',
+    \'coc-go',
+    \'coc-css',
+    \'coc-emmet',
+    \'coc-html',
+    \'coc-rls',
+    \'coc-yaml',
+\]
+
+" copied from coc readme:
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -249,3 +282,8 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" coc-snippets
+imap <C-y> <Plug>(coc-snippets-expand)
+let g:coc_snippet_next = '<tab>'
+

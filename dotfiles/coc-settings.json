@@ -1,6 +1,8 @@
 {
   "coc.preferences.formatOnSaveFiletypes": [
     "go",
+    "yaml",
+    "rust",
     "python",
     "json",
     "graphql",
