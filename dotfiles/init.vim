@@ -19,6 +19,7 @@ set nocompatible
 set wildmenu
 set wildmode=longest:full,full
 set nobackup
+set t_Co=256
 
 syntax on
 filetype plugin indent on
@@ -27,7 +28,7 @@ let mapleader = " "
 
 let g:netrw_banner = 0
 
-" launch shell in interactive mode so aliases are loaded
+" shell in interactive mode so aliases are loaded
 let &shell='/bin/zsh -i'
 
 " yank to the end of line
@@ -47,31 +48,39 @@ tnoremap <Esc> <C-\><C-n>
 " open file explorer
 nnoremap <Leader>fe :Explore<CR>
 
+" resizing
+nnoremap <M-j> :resize -2<CR>
+nnoremap <M-k> :resize +2<CR>
+nnoremap <M-h> :vertical resize -2<CR>
+nnoremap <M-l> :vertical resize +2<CR>
+
+" moving selected lines
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 " remove on save all trailing whitespace
 autocmd BufWritePre * %s/\s\+$//e
+
+" source config after save
+autocmd BufWritePost $MYVIMRC source %
 
 " different cursor on insert
 autocmd InsertEnter,InsertLeave * set cul!
 
 call plug#begin('~/.config/nvim/plugged')
-
 Plug 'rakr/vim-one'
-
 Plug 'itchyny/lightline.vim'
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
 Plug 'easymotion/vim-easymotion'
-
 Plug 'tpope/vim-surround'
-
+Plug 'jiangmiao/auto-pairs'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 Plug 'sheerun/vim-polyglot'
-
 Plug 'tpope/vim-fugitive'
-
+Plug 'tpope/vim-rhubarb'
+Plug 'junegunn/gv.vim'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 " theme
@@ -84,17 +93,23 @@ let g:lightline = {
       \             [ 'readonly', 'filename', 'modified', 'gitbranch' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
+      \   'gitbranch': 'FugitiveHead',
+      \   'filename': 'LightlineTruncatedFileName'
       \ },
       \ }
 
-function! LightlineGitBlame() abort
-  let blame = get(b:, 'coc_git_blame', '')
-  return winwidth(0) > 120 ? blame : ''
+" source https://github.com/itchyny/lightline.vim/issues/532#issuecomment-745992513
+function! LightlineTruncatedFileName()
+let l:filePath = expand('%')
+    if winwidth(0) > 100
+        return l:filePath
+    else
+        return pathshorten(l:filePath)
+    endif
 endfunction
 
 " fzf
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden --ignore .git'
 nnoremap <C-p> :Files<CR>
 nnoremap <Leader>ff :Rg<CR>
 nnoremap <Leader>bb :Buffers<CR>
@@ -105,18 +120,18 @@ nmap <Leader><Leader>s <Plug>(easymotion-overwin-f2)
 
 " coc
 let g:coc_global_extensions = [
-    \'coc-json',
-    \'coc-git',
-    \'coc-snippets',
-    \'coc-prettier',
-    \'coc-eslint',
-    \'coc-tsserver',
-    \'coc-python',
-    \'coc-go',
     \'coc-css',
     \'coc-emmet',
+    \'coc-eslint',
+    \'coc-git',
+    \'coc-go',
     \'coc-html',
+    \'coc-json',
+    \'coc-prettier',
+    \'coc-python',
     \'coc-rls',
+    \'coc-snippets',
+    \'coc-tsserver',
     \'coc-yaml',
 \]
 
