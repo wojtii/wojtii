@@ -1,3 +1,11 @@
+""""""""""""""""""""
+" nvim config
+" author: @wojtii
+""""""""""""""""""""
+
+""""""""""""""""""""
+" Basic
+""""""""""""""""""""
 set title
 set number
 set linebreak
@@ -18,82 +26,94 @@ set fileencoding=utf-8
 set nocompatible
 set wildmenu
 set wildmode=longest:full,full
-set nobackup
 set t_Co=256
+" coc recommended
+set nobackup
+set nowritebackup
+set hidden
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
 
 syntax on
 filetype plugin indent on
 
+" space leader
 let mapleader = " "
-
+" hide netrw banner
 let g:netrw_banner = 0
-
 " shell in interactive mode so aliases are loaded
 let &shell='/bin/zsh -i'
 
 " yank to the end of line
 noremap Y y$
-
 " disable entering ex mode
 nnoremap Q q
-
-" kill buffer
-nnoremap <Leader>bk :bd!<CR>
-
 " open terminal
 nnoremap <Leader>t :terminal<CR>
 " escape in terminal
 tnoremap <Esc> <C-\><C-n>
-
 " open file explorer
 nnoremap <Leader>fe :Explore<CR>
-
 " resizing
 nnoremap <M-j> :resize -2<CR>
 nnoremap <M-k> :resize +2<CR>
 nnoremap <M-h> :vertical resize -2<CR>
 nnoremap <M-l> :vertical resize +2<CR>
-
 " moving selected lines
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
 " remove on save all trailing whitespace
 autocmd BufWritePre * %s/\s\+$//e
-
-" source config after save
-autocmd BufWritePost $MYVIMRC source %
-
 " different cursor on insert
 autocmd InsertEnter,InsertLeave * set cul!
 
+
+
+""""""""""""""""""""
+" Plugins
+""""""""""""""""""""
 call plug#begin('~/.config/nvim/plugged')
+" theme
 Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'
+Plug 'sheerun/vim-polyglot'
+
+" navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-vinegar'
+
+" editing
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
+
+" git
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-commentary'
+
+" completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " theme
 colorscheme one
 set background=light
+
+" lightline
 let g:lightline = {
       \ 'colorscheme': 'one',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'gitbranch' ] ]
+      \             [ 'readonly', 'filename', 'modified', 'gitbranch', 'cocstatus' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead',
+      \   'cocstatus': 'coc#status',
       \   'filename': 'LightlineTruncatedFileName'
       \ },
       \ }
@@ -134,33 +154,6 @@ let g:coc_global_extensions = [
     \'coc-tsserver',
     \'coc-yaml',
 \]
-
-" copied from coc readme:
-" TextEdit might fail if hidden is not set.
-set hidden
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
-" Give more space for displaying messages.
-set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -280,25 +273,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" Mappings for CoCList
-" Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
-" coc-snippets
+" snippets
 imap <C-y> <Plug>(coc-snippets-expand)
 let g:coc_snippet_next = '<tab>'
 
