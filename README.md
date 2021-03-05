@@ -14,9 +14,9 @@
 #### Tools
 
 <code>
-  <img title="Emacs" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/emacs/emacs.png"/>
-  <img title="VS Code - second editor" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png"/>
-  <img title="Insomnia" width="32" src="https://github.com/Kong/insomnia.rest/blob/master/static/images/icon-small.png"/>
+  <img title="Vim" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vim/vim.png"/>
+  <img title="VS Code" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png"/>
+  <img title="Insomnia" width="32" src="https://github.com/Kong/insomnia/blob/develop/packages/insomnia-app/app/ui/images/insomnia-core-logo.png"/>
 </code>
 
 #### Languages
