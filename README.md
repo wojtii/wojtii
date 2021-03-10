@@ -9,7 +9,7 @@
 - 📱 iPhone 12
 - 🇵🇱 native
 - 🇬🇧 advanced
-- 🇪🇸 🇯🇵 🇫🇷 beginner
+- 🇪🇸 beginner
 
 #### Tools
 
@@ -46,7 +46,6 @@
   <img title="AWS" width="32" src="https://raw.githubusercontent.com/github/explore/fbceb94436312b6dacde68d122a5b9c7d11f9524/topics/aws/aws.png"/>
   <img title="Firebase" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/firebase/firebase.png"/>
   <img title="Docker" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png"/>
-  <img title="TensorFlow" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/tensorflow/tensorflow.png"/>
   <img title="GraphQL" width="32" src="https://raw.githubusercontent.com/github/explore/5c058a388828bb5fde0bcafd4bc867b5bb3f26f3/topics/graphql/graphql.png"/>
   <img title="Elasticsearch" width="32" src="https://raw.githubusercontent.com/github/explore/d73b58ded658144cd29547485b8537306012eb86/topics/elasticsearch/elasticsearch.png"/>
   <img title="MongoDB" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png"/>
