@@ -35,6 +35,7 @@
   <img title="Erlang" width="32" src="https://raw.githubusercontent.com/github/explore/e3f071c9faa00fc2285ae33185bb61f4c42968b2/topics/erlang/erlang.png"/>
   <img title="Rust" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/rust/rust.png"/>
   <img title="Prolog" width="32" src="https://www.swi-prolog.org/icons/swipl.png"/>
+  <img title="Lisp" width="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/lisp/lisp.png"/>
 </code>
 
 #### Technologies
