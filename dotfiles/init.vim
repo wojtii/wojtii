@@ -24,6 +24,7 @@ set wildmode=longest:full,full
 set scl=yes
 set updatetime=200
 set completeopt=menuone,noinsert,noselect
+set hidden
 
 filetype plugin indent on
 
@@ -39,8 +40,6 @@ let &shell='/bin/zsh -i'
 
 noremap Y y$ " yank to the end of line
 nnoremap Q q " disable entering ex mode
-nnoremap <Leader>t :terminal<CR>
-tnoremap <Esc> <C-\><C-n> " escape in terminal
 nnoremap <Leader>fe :Explore<CR> " open netrw
 nnoremap <M-Down> :resize -2<CR>
 nnoremap <M-Up> :resize +2<CR>
@@ -61,6 +60,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'akinsho/toggleterm.nvim'
 
 " editing
 Plug 'easymotion/vim-easymotion'
@@ -84,6 +84,17 @@ colorscheme ayu
 
 " lightline
 let g:lightline = { 'colorscheme':'ayu' }
+
+" terminal
+nnoremap <Leader>tt :terminal<CR>
+tnoremap <Esc> <C-\><C-n> " escape in terminal
+lua <<EOF
+require("toggleterm").setup{}
+EOF
+nnoremap <Leader>tv :ToggleTerm direction='vertical' size=40<CR>
+nnoremap <Leader>th :ToggleTerm direction='horizontal'<CR>
+nnoremap <Leader>tf :ToggleTerm direction='float'<CR>
+nnoremap <Leader>tq :ToggleTermCloseAll<CR>
 
 
 " telescope
@@ -119,15 +130,10 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- TODO Format on save
-  -- if client.resolved_capabilities.document_formatting then
-  --   vim.api.nvim_command [[augroup Format]]
-  --   vim.api.nvim_command [[autocmd! * <buffer>]]
-  --   vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
-  --   vim.api.nvim_command [[augroup END]]
-  -- end
+  -- Format on save
+  vim.api.nvim_command("au BufWritePost <buffer> lua vim.lsp.buf.formatting()")
 
-  -- Mappings.
+-- Mappings.
   local opts = { noremap=true, silent=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -167,5 +173,6 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
 EOF
 
