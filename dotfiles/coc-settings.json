@@ -1,0 +1,25 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "go",
+    "yaml",
+    "rust",
+    "python",
+    "json",
+    "graphql",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.checkCurrentLine": true,
+  "go.goplsOptions": { "staticcheck": true },
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintArgs": ["--disable=C0111"],
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": ["--max-line-length 120"],
+  "python.linting.mypyEnabled": true,
+  "python.formatting.provider": "black"
+}
