@@ -25,6 +25,7 @@ set scl=yes
 set updatetime=200
 set completeopt=menuone,noinsert,noselect
 set hidden
+set timeoutlen=250
 
 filetype plugin indent on
 
@@ -52,7 +53,7 @@ set list listchars=tab:▸\ ,trail:·,space:·
 
 call plug#begin('~/.config/nvim/plugged')
 " theme
-Plug 'ayu-theme/ayu-vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'itchyny/lightline.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -61,11 +62,11 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'akinsho/toggleterm.nvim'
+Plug 'folke/which-key.nvim'
 
 " editing
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
-Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 
 " lsp
@@ -74,11 +75,20 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " theme
-let ayucolor="mirage"
-colorscheme ayu
+let g:tokyonight_transparent="true"
+colorscheme tokyonight
 
 " lightline
-let g:lightline = { 'colorscheme':'ayu' }
+let g:lightline = {
+      \ 'colorscheme':'tokyonight',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'relativepath', 'modified', 'cocstatus' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ }
 
 " terminal
 nnoremap <Leader>tt :terminal<CR>
@@ -90,6 +100,9 @@ nnoremap <Leader>tv :ToggleTerm direction='vertical' size=40<CR>
 nnoremap <Leader>th :ToggleTerm direction='horizontal'<CR>
 nnoremap <Leader>tf :ToggleTerm direction='float'<CR>
 nnoremap <Leader>tq :ToggleTermCloseAll<CR>
+lua << EOF
+  require("which-key").setup {}
+EOF
 
 " telescope
 nnoremap <Leader>p <cmd>Telescope find_files<cr>
@@ -97,7 +110,7 @@ nnoremap <Leader>ff <cmd>Telescope live_grep<cr>
 nnoremap <Leader>bb <cmd>Telescope buffers<cr>
 
 " easymotion
-nmap <Leader><Leader>s <Plug>(easymotion-overwin-f2)
+nmap <Leader><Leader>s <Plug>(easymotion-overwin-f)
 
 " treesitter
 lua <<EOF
@@ -112,19 +125,21 @@ EOF
 
 " coc
 let g:coc_global_extensions = [
-    \'coc-css',
-    \'coc-emmet',
-    \'coc-eslint',
-    \'coc-git',
-    \'coc-go',
-    \'coc-html',
-    \'coc-json',
-    \'coc-prettier',
-    \'coc-pyright',
-    \'coc-rls',
-    \'coc-snippets',
-    \'coc-tsserver',
-    \'coc-yaml',
+  \'coc-css',
+  \'coc-emmet',
+  \'coc-eslint',
+  \'coc-git',
+  \'coc-go',
+  \'coc-html',
+  \'coc-json',
+  \'coc-pairs',
+  \'coc-prettier',
+  \'coc-pyright',
+  \'coc-rls',
+  \'coc-snippets',
+  \'coc-snippets',
+  \'coc-tsserver',
+  \'coc-yaml',
 \]
 " Trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()

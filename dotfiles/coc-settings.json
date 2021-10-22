@@ -1,15 +1,16 @@
 {
   "coc.preferences.formatOnSaveFiletypes": [
     "go",
-    "yaml",
-    "rust",
-    "python",
-    "json",
     "graphql",
     "javascript",
     "javascriptreact",
+    "json",
+    "markdown",
+    "python",
+    "rust",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "yaml"
   ],
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": false,
