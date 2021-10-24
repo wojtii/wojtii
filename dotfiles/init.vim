@@ -26,6 +26,7 @@ set updatetime=200
 set completeopt=menuone,noinsert,noselect
 set hidden
 set timeoutlen=250
+set inccommand=nosplit
 
 filetype plugin indent on
 
