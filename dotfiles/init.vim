@@ -32,7 +32,7 @@ filetype plugin indent on
 " highlight yanked
 augroup highlight_yank
     autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=200}
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
 augroup END
 
 let mapleader = " "
@@ -42,6 +42,7 @@ let &shell='/bin/zsh -i'
 noremap Y y$ " yank to the end of line
 nnoremap Q q " disable entering ex mode
 nnoremap <Leader>fe :Explore<CR> " open netrw
+nnoremap <Leader>fr :Lexplore!<CR> " togle netrw on the right
 nnoremap <M-Down> :resize -2<CR>
 nnoremap <M-Up> :resize +2<CR>
 nnoremap <M-Left> :vertical resize -2<CR>
@@ -50,6 +51,23 @@ nnoremap <M-Right> :vertical resize +2<CR>
 autocmd BufWritePre * %s/\s\+$//e " remove all trailing whitespace on save
 
 set list listchars=tab:▸\ ,trail:·,space:·
+
+" markdown
+let g:markdown_fenced_languages = [
+  \'bash=sh',
+  \'css',
+  \'go',
+  \'html',
+  \'javascript',
+  \'js=javascript',
+  \'json',
+  \'python',
+  \'sh',
+  \'shell=sh',
+  \'ts=typescript',
+  \'typescript',
+  \'yaml',
+\]
 
 call plug#begin('~/.config/nvim/plugged')
 " theme
@@ -91,23 +109,36 @@ let g:lightline = {
       \ }
 
 " terminal
-nnoremap <Leader>tt :terminal<CR>
+nnoremap <Leader>to :terminal<CR>
 tnoremap <Esc> <C-\><C-n> " escape in terminal
 lua <<EOF
 require("toggleterm").setup{}
 EOF
 nnoremap <Leader>tv :ToggleTerm direction='vertical' size=40<CR>
 nnoremap <Leader>th :ToggleTerm direction='horizontal'<CR>
-nnoremap <Leader>tf :ToggleTerm direction='float'<CR>
+nnoremap <Leader>tt :ToggleTerm direction='float'<CR>
 nnoremap <Leader>tq :ToggleTermCloseAll<CR>
 lua << EOF
-  require("which-key").setup {}
+require("which-key").setup {}
 EOF
 
+
 " telescope
+lua << EOF
+require('telescope').setup {
+  defaults = {
+    mappings = {
+      i = {
+        ["<Down>"] = require('telescope.actions').cycle_history_next,
+        ["<Up>"] = require('telescope.actions').cycle_history_prev,
+      },
+    },
+  }
+}
+EOF
 nnoremap <Leader>p <cmd>Telescope find_files<cr>
 nnoremap <Leader>ff <cmd>Telescope live_grep<cr>
-nnoremap <Leader>bb <cmd>Telescope buffers<cr>
+nnoremap <Leader>fb <cmd>Telescope buffers<cr>
 
 " easymotion
 nmap <Leader><Leader>s <Plug>(easymotion-overwin-f)
@@ -144,11 +175,11 @@ let g:coc_global_extensions = [
 " Trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
 " Show all diagnostics.
-nnoremap <silent><nowait> <leader>cd :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <Leader>cd :<C-u>CocList diagnostics<cr>
 " Show commands.
-nnoremap <silent><nowait> <leader>cc :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <Leader>cc :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent><nowait> <leader>co  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <Leader>co  :<C-u>CocList outline<cr>
 " Code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -168,3 +199,5 @@ endfunction
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" Add missing imports in go on save (commented for now since it is slow)
+" autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')

@@ -20,7 +20,7 @@ ln -s $DOTFILES_DIR/.zshrc ~/.zshrc
 
 mkdir -p ~/.config
 ln -s $DOTFILES_DIR/starship.toml ~/.config/starship.toml
-ln -s $DOTFILES_DIR/starship.toml ~/.config/init.vim
+ln -s $DOTFILES_DIR/init.vim  ~/.config/nvim/init.vim
 
 # brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
