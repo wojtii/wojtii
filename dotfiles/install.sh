@@ -18,8 +18,9 @@ xcode-select --install
 ln -s $DOTFILES_DIR/.gitconfig ~/.gitconfig
 ln -s $DOTFILES_DIR/.zshrc ~/.zshrc
 
-mkdir -p ~/.config
+mkdir ~/.config
 ln -s $DOTFILES_DIR/starship.toml ~/.config/starship.toml
+mkdir ~/.config/nvim
 ln -s $DOTFILES_DIR/init.vim  ~/.config/nvim/init.vim
 
 # brew

@@ -1,12 +1,15 @@
-prompt_order=[
-  "directory",
-  "git_branch",
-  "cmd_duration",
-  "character",
-]
+format = """
+$directory\
+$git_branch\
+$cmd_duration\
+$character"""
 
 [character]
-symbol = "λ"
+success_symbol = "🐵 [λ](bold green)"
+error_symbol = "🙈 [λ](bold red)"
+
+[package]
+disabled = true
 
 [cmd_duration]
-min_time = 10
+min_time = 100
