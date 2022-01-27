@@ -130,8 +130,8 @@ require('telescope').setup {
   defaults = {
     mappings = {
       i = {
-        ["<Down>"] = require('telescope.actions').cycle_history_next,
-        ["<Up>"] = require('telescope.actions').cycle_history_prev,
+        ["<Left>"] = require('telescope.actions').cycle_history_prev,
+        ["<Right>"] = require('telescope.actions').cycle_history_next,
       },
     },
   }
