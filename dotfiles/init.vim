@@ -102,7 +102,7 @@ let g:lightline = {
       \ 'colorscheme':'tokyonight',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'relativepath', 'modified', 'cocstatus' ] ]
+      \             [ 'readonly', 'filename', 'modified', 'cocstatus' ] ]
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status'
@@ -134,7 +134,19 @@ require('telescope').setup {
         ["<Right>"] = require('telescope.actions').cycle_history_next,
       },
     },
-  }
+    path_display={"truncate"}
+  },
+  pickers = {
+    find_files = {
+      theme = "dropdown",
+    },
+    live_grep = {
+      theme = "dropdown",
+    },
+    buffers = {
+      theme = "dropdown",
+    }
+  },
 }
 EOF
 nnoremap <Leader>p <cmd>Telescope find_files<cr>
@@ -202,3 +214,5 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Add missing imports in go on save (commented for now since it is slow)
 " autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
