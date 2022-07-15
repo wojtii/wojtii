@@ -1,0 +1,20 @@
+set ignorecase
+set smartcase
+set hlsearch
+set visualbell
+
+let mapleader = " "
+
+nmap gh :action ShowErrorDescription<cr>
+nmap gi :action GotoImplementation<cr>
+noremap Y y$
+
+set clipboard+=unnamed
+
+set highlightedyank
+let g:highlightedyank_highlight_color = "rgba(169, 179, 249, 155)"
+let g:highlightedyank_highlight_duration = "100"
+
+set surround
+set easymotion
+set commentary

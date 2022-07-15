@@ -27,6 +27,8 @@ set completeopt=menuone,noinsert,noselect
 set hidden
 set timeoutlen=250
 set inccommand=nosplit
+set laststatus=3
+" TODO winbar (breadcrumbs) when 0.8 will be released
 
 filetype plugin indent on
 
@@ -42,8 +44,7 @@ let &shell='/bin/zsh -i'
 
 noremap Y y$ " yank to the end of line
 nnoremap Q q " disable entering ex mode
-nnoremap <Leader>fe :Explore<CR> " open netrw
-nnoremap <Leader>fr :Lexplore!<CR> " togle netrw on the right
+nnoremap <Leader>fe :20Lexplore!<CR> " togle netrw on the right
 nnoremap <M-Down> :resize -2<CR>
 nnoremap <M-Up> :resize +2<CR>
 nnoremap <M-Left> :vertical resize -2<CR>
@@ -118,7 +119,7 @@ EOF
 nnoremap <Leader>tv :ToggleTerm direction='vertical' size=40<CR>
 nnoremap <Leader>th :ToggleTerm direction='horizontal'<CR>
 nnoremap <Leader>tt :ToggleTerm direction='float'<CR>
-nnoremap <Leader>tq :ToggleTermCloseAll<CR>
+
 lua << EOF
 require("which-key").setup {}
 EOF
@@ -151,7 +152,7 @@ require('telescope').setup {
 EOF
 nnoremap <Leader>p <cmd>Telescope find_files<cr>
 nnoremap <Leader>ff <cmd>Telescope live_grep<cr>
-nnoremap <Leader>fb <cmd>Telescope buffers<cr>
+nnoremap <Leader>bb <cmd>Telescope buffers<cr>
 
 " easymotion
 nmap <Leader><Leader>s <Plug>(easymotion-overwin-f)
@@ -159,7 +160,8 @@ nmap <Leader><Leader>s <Plug>(easymotion-overwin-f)
 " treesitter
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+  ensure_installed = "all",
+  ignore_install = { "phpdoc", "tree-sitter-phpdoc" },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
@@ -212,7 +214,7 @@ endfunction
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-" Add missing imports in go on save (commented for now since it is slow)
-" autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Add missing imports in go on save
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')

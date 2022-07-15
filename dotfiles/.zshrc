@@ -3,22 +3,22 @@ source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/.fzf.zsh
 source ~/.config/zsh/fzf-tab/fzf-tab.zsh
 
-fpath=(~/.config/zsh/completion $fpath)
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 autoload -Uz compinit && compinit
 setopt globdots
+
+ setopt share_history
 
 bindkey -e
 
 alias g='git'
 alias v='nvim'
-alias mfa='mfacli'
-alias mfac='mfacli clipboard'
 alias vz='v ~/.zshrc'
 alias vv='v ~/.config/nvim/init.vim'
 alias ls='exa'
 alias ll='ls -la'
-alias mt='make test'
-alias go-lint-fix='golangci-lint run --new-from-rev=master --fix'
+alias bb='brew bundle --file ~/.config/Brewfile'
+alias docker-clear='docker kill $(docker ps -q) && docker rm $(docker ps -a -q)'
 
 alias ~='cd ~'
 alias -- -='cd -'
@@ -27,19 +27,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-alias docker-clear='docker kill $(docker ps -q) && docker rm $(docker ps -a -q)'
-alias ctl='lima nerdctl'
-alias ctl-clear='ctl kill $(ctl ps -q) && ctl rm $(ctl ps -a -q)'
-
-export DOCKER_HOST=unix:///Users/$USER/.lima/docker/sock/docker.sock
-
 export EDITOR='nvim'
 
-export GOPROXY=direct
-export GOSUMDB=off
 export PATH=$PATH:$(go env GOPATH)/bin
 
 eval "$(starship init zsh)"
-
-eval "$(pyenv init -)"
-
