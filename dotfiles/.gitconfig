@@ -12,3 +12,5 @@
 	user = wojtii
 [core]
 	excludesfile = ~/.gitignore
+[push]
+	autoSetupRemote = true

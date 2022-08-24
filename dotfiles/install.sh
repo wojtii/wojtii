@@ -1,29 +1,22 @@
 #!/bin/bash
 # based on https://chodounsky.com/2017/01/20/automate-your-macos-development-machine-setup/
 
-# TODO ohmyzsh
-# TODO iterm config
-# TODO vscode
-# TODO neovim
+# TODO first install brew
 
-REPO_DIR=~/wojtii
-DOTFILES_DIR=$REPO_DIR/dotfiles
-
-xcode-select --install
-
-# macos
-# TODO run macos.sh
+DIR=~/dev/wojtii/dotfiles
 
 # dotfiles
-ln -s $DOTFILES_DIR/.gitconfig ~/.gitconfig
-ln -s $DOTFILES_DIR/.zshrc ~/.zshrc
+ln -s $DIR/.gitconfig ~/.gitconfig
+ln -s $DIR/.zshrc ~/.zshrc
+ln -s $DIR/.ideavimrc ~/.ideavimrc
 
 mkdir ~/.config
-ln -s $DOTFILES_DIR/starship.toml ~/.config/starship.toml
+ln -s $DIR/starship.toml ~/.config/starship.toml
 mkdir ~/.config/nvim
-ln -s $DOTFILES_DIR/init.vim  ~/.config/nvim/init.vim
+ln -s $DIR/init.vim  ~/.config/nvim/init.vim
 
-# brew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-cd ~/wojtii/dotfiles || exit 1
-brew bundle
+mkdir ~/.config/zsh
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh/zsh-syntax-highlighting
+git clone https://github.com/Aloxaf/fzf-tab ~/.config/zsh/fzf-tab
+$(brew --prefix)/opt/fzf/install
