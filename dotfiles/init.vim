@@ -56,24 +56,16 @@ set list listchars=tab:▸\ ,trail:·,space:·
 
 " markdown
 let g:markdown_fenced_languages = [
-  \'bash=sh',
-  \'css',
-  \'go',
-  \'html',
-  \'javascript',
-  \'js=javascript',
-  \'json',
-  \'python',
-  \'sh',
-  \'shell=sh',
-  \'ts=typescript',
-  \'typescript',
-  \'yaml',
+  \'bash=sh', 'css', 'go', 'html',
+  \'javascript', 'js=javascript',
+  \'json', 'python', 'sh', 'shell=sh',
+  \'ts=typescript', 'typescript', 'yaml',
 \]
 
 call plug#begin('~/.config/nvim/plugged')
 " theme
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'ayu-theme/ayu-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -95,12 +87,18 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " theme
-let g:tokyonight_transparent="true"
-colorscheme tokyonight
+" let g:tokyonight_transparent="true"
+" colorscheme tokyonight
+" let ayucolor="light"  " for light version of theme
+" let ayucolor="mirage" " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
+highlight Normal ctermbg=none guibg=none
+highlight NonText ctermbg=none guibg=none
 
 " lightline
 let g:lightline = {
-      \ 'colorscheme':'tokyonight',
+      \ 'colorscheme':'ayu',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified', 'cocstatus' ] ]
@@ -131,8 +129,8 @@ require('telescope').setup {
   defaults = {
     mappings = {
       i = {
-        ["<Left>"] = require('telescope.actions').cycle_history_prev,
-        ["<Right>"] = require('telescope.actions').cycle_history_next,
+        ["<S-Left>"] = require('telescope.actions').cycle_history_prev,
+        ["<S-Right>"] = require('telescope.actions').cycle_history_next,
       },
     },
     path_display={"truncate"}
@@ -186,6 +184,7 @@ let g:coc_global_extensions = [
   \'coc-snippets',
   \'coc-tsserver',
   \'coc-yaml',
+  \'coc-rust-analyzer',
 \]
 " Trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -194,7 +193,7 @@ nnoremap <silent><nowait> <Leader>cd :<C-u>CocList diagnostics<cr>
 " Show commands.
 nnoremap <silent><nowait> <Leader>cc :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent><nowait> <Leader>co  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <Leader>co :<C-u>CocList outline<cr>
 " Code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
