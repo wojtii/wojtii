@@ -148,7 +148,7 @@ require('telescope').setup {
   },
 }
 EOF
-nnoremap <Leader>p <cmd>Telescope find_files<cr>
+nnoremap <Leader>p <cmd>Telescope find_files hidden=true<cr>
 nnoremap <Leader>ff <cmd>Telescope live_grep<cr>
 nnoremap <Leader>bb <cmd>Telescope buffers<cr>
 

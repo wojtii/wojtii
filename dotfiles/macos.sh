@@ -1,6 +1,18 @@
-# Disable font smoothing, more information - https://tonsky.me/blog/monitors/
-# To check current value use `defaults -currentHost read -g | grep 'AppleFontSmoothing'`
-# defaults -currentHost write -g AppleFontSmoothing -int 0
+# To check current value use `defaults read -g | grep '{name}'`
 
 defaults write -g ApplePressAndHoldEnabled -bool false
 
+# Finder: show hidden files by default
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Finder: show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Finder: show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Finder: show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Finder: disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false

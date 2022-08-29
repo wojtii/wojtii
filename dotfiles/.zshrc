@@ -7,7 +7,7 @@ FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 autoload -Uz compinit && compinit
 setopt globdots
 
- setopt share_history
+setopt share_history
 
 bindkey -e
 
@@ -17,7 +17,6 @@ alias vz='v ~/.zshrc'
 alias vv='v ~/.config/nvim/init.vim'
 alias ls='exa'
 alias ll='ls -la'
-alias bb='brew bundle --file ~/.config/Brewfile'
 alias docker-clear='docker kill $(docker ps -q) && docker rm $(docker ps -a -q)'
 
 alias ~='cd ~'
