@@ -51,7 +51,9 @@ nnoremap <M-Up> :resize +2<CR>
 nnoremap <M-Left> :vertical resize -2<CR>
 nnoremap <M-Right> :vertical resize +2<CR>
 
+" completion
 inoremap <expr> <CR> pumvisible() ? "<C-y>" :"<CR>"
+inoremap <C-Space> <C-n>
 
 autocmd BufWritePre * %s/\s\+$//e " remove all trailing whitespace on save
 
