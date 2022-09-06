@@ -28,6 +28,7 @@ brew "localstack"
 brew "golangci-lint"
 brew "pinentry-mac"
 brew "k9s"
+brew "lazydocker"
 
 cask "iterm2"
 cask "rectangle"

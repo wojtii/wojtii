@@ -24,6 +24,7 @@ set wildmode=longest:full,full
 set scl=yes
 set updatetime=200
 set completeopt=menuone,noinsert,noselect
+set shortmess+=c
 set hidden
 set timeoutlen=250
 set inccommand=nosplit
@@ -50,6 +51,8 @@ nnoremap <M-Up> :resize +2<CR>
 nnoremap <M-Left> :vertical resize -2<CR>
 nnoremap <M-Right> :vertical resize +2<CR>
 
+inoremap <expr> <CR> pumvisible() ? "<C-y>" :"<CR>"
+
 autocmd BufWritePre * %s/\s\+$//e " remove all trailing whitespace on save
 
 set list listchars=tab:▸\ ,trail:·,space:·
@@ -64,7 +67,6 @@ let g:markdown_fenced_languages = [
 
 call plug#begin('~/.config/nvim/plugged')
 " theme
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'ayu-theme/ayu-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -80,17 +82,11 @@ Plug 'folke/which-key.nvim'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-
-" lsp
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 call plug#end()
 
 " theme
-" let g:tokyonight_transparent="true"
-" colorscheme tokyonight
-" let ayucolor="light"  " for light version of theme
-" let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
 let ayucolor="dark"   " for dark version of theme
 colorscheme ayu
 highlight Normal ctermbg=none guibg=none
@@ -101,10 +97,7 @@ let g:lightline = {
       \ 'colorscheme':'ayu',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'cocstatus' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status'
+      \             [ 'readonly', 'filename', 'modified' ] ]
       \ },
       \ }
 
@@ -167,53 +160,3 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-" coc
-let g:coc_global_extensions = [
-  \'coc-css',
-  \'coc-emmet',
-  \'coc-eslint',
-  \'coc-git',
-  \'coc-go',
-  \'coc-html',
-  \'coc-json',
-  \'coc-pairs',
-  \'coc-prettier',
-  \'coc-pyright',
-  \'coc-rls',
-  \'coc-snippets',
-  \'coc-snippets',
-  \'coc-tsserver',
-  \'coc-yaml',
-  \'coc-rust-analyzer',
-\]
-" Trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()
-" Show all diagnostics.
-nnoremap <silent><nowait> <Leader>cd :<C-u>CocList diagnostics<cr>
-" Show commands.
-nnoremap <silent><nowait> <Leader>cc :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <Leader>co :<C-u>CocList outline<cr>
-" Code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <F2> <Plug>(coc-rename)
-nnoremap <silent> gh :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-"                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" Add missing imports in go on save
-autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
