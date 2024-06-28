@@ -1,4 +1,5 @@
 # To check current value use `defaults read -g | grep '{name}'`
+# More https://git.herrbischoff.com/awesome-macos-command-line/about/
 
 defaults write -g ApplePressAndHoldEnabled -bool false
 

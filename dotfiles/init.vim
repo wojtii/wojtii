@@ -24,12 +24,13 @@ set wildmode=longest:full,full
 set scl=yes
 set updatetime=200
 set completeopt=menuone,noinsert,noselect
+set dictionary=/usr/share/dict/words
 set shortmess+=c
 set hidden
 set timeoutlen=250
 set inccommand=nosplit
 set laststatus=3
-" TODO winbar (breadcrumbs) when 0.8 will be released
+set cmdheight=0
 
 filetype plugin indent on
 
@@ -41,7 +42,7 @@ augroup END
 
 let mapleader = " "
 let g:netrw_banner = 0
-let &shell='/bin/zsh -i'
+let &shell='/bin/zsh'
 
 noremap Y y$ " yank to the end of line
 nnoremap Q q " disable entering ex mode
@@ -84,6 +85,7 @@ Plug 'folke/which-key.nvim'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'sbdchd/neoformat'
 call plug#end()
 
 " theme
@@ -162,3 +164,8 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+" code formatting on save
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END

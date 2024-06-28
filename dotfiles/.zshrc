@@ -14,10 +14,12 @@ bindkey -e
 alias g='git'
 alias v='nvim'
 alias vz='v ~/.zshrc'
-alias vv='v ~/.config/nvim/init.vim'
+alias vv='v ~/.config/nvim/init.lua'
 alias ls='exa'
 alias ll='ls -la'
+alias l=ll
 alias docker-clear='docker kill $(docker ps -q) && docker rm $(docker ps -a -q)'
+alias docker-rm='docker rm $(docker ps -a -q)'
 
 alias ~='cd ~'
 alias -- -='cd -'
