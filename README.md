@@ -1,3 +1,3 @@
 #### General information
 
-- 📫 How to reach me: wojciechniedbala@pm.me
+- 📫 How to reach me: wojciechniedbala@protonmail.com
