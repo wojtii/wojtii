@@ -11,11 +11,13 @@ setopt share_history
 
 bindkey -e
 
+alias python=python3
+
 alias g='git'
 alias v='nvim'
 alias vz='v ~/.zshrc'
 alias vv='v ~/.config/nvim/init.lua'
-alias ls='exa'
+alias ls='eza'
 alias ll='ls -la'
 alias l=ll
 alias docker-clear='docker kill $(docker ps -q) && docker rm $(docker ps -a -q)'
