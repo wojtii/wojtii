@@ -3,7 +3,7 @@ local g = vim.g
 g.mapleader = ' '
 g.maplocalleader = ' '
 g.netrw_banner = 0
--- g.netrw_browse_split = 4 -- open on the right side
+g.netrw_browse_split = 4 -- open on the right side
 g.netrw_winsize = 20
 
 local wo = vim.wo
@@ -41,11 +41,11 @@ k.set('n', '<M-Right>', ':vertical resize -2<CR>', { noremap = true })
 k.set('n', '<M-Left>', ':vertical resize +2<CR>', { noremap = true })
 k.set('n', '<leader>tt', ':FloatermToggle<CR>', { noremap = true })
 k.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
-k.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
-k.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
-k.set("n", "<leader>tc", ":tabclose<CR>") -- close current tab
-k.set("n", "<leader>tn", ":tabn<CR>") -- go to next tab
-k.set("n", "<leader>tp", ":tabp<CR>") -- go to previous tab
+k.set('n', '<leader>to', ':tabnew<CR>') -- open new tab
+k.set('n', '<leader>tx', ':tabclose<CR>') -- close current tab
+k.set('n', '<leader>tc', ':tabclose<CR>') -- close current tab
+k.set('n', '<leader>tn', ':tabn<CR>') -- go to next tab
+k.set('n', '<leader>tp', ':tabp<CR>') -- go to previous tab
 
 vim.api.nvim_create_autocmd('TextYankPost', { -- highlight yanked
 	callback = function()
@@ -53,58 +53,55 @@ vim.api.nvim_create_autocmd('TextYankPost', { -- highlight yanked
 	end,
 })
 
+
+-- Bootstrap plugin manager
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
+end
+vim.opt.rtp:prepend(lazypath)
+
 -- Plugins
--- TODO: packer is not supported, rewrite to use lazy.nvim
-require('packer').startup(function(use)
-	use 'wbthomason/packer.nvim'
-	use 'folke/tokyonight.nvim'
-	use 'nvim-lualine/lualine.nvim'
-	use 'voldikss/vim-floaterm'
-	use 'lewis6991/gitsigns.nvim'
+require("lazy").setup({
+	{ "folke/tokyonight.nvim" },
+	{ "nvim-lualine/lualine.nvim" },
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope-file-browser.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		},
+	},
+	{ "nvim-mini/mini.nvim", version = false },
+})
 
-	use 'neovim/nvim-lspconfig'
-	use 'hrsh7th/cmp-nvim-lsp'
-	use 'hrsh7th/cmp-buffer'
-	use 'hrsh7th/cmp-path'
-	use 'hrsh7th/cmp-cmdline'
-	use 'hrsh7th/nvim-cmp'
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate'
-	}
-
-	use "folke/which-key.nvim"
-
-	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.4',
-		requires = { { 'nvim-lua/plenary.nvim' } }
-	}
-	use 'nvim-telescope/telescope-file-browser.nvim'
-
-	-- editing
-	use "windwp/nvim-autopairs"
-	use "kylechui/nvim-surround"
-	use "easymotion/vim-easymotion"
-	use 'numToStr/Comment.nvim'
-end)
-
--- Theme
 require("tokyonight").setup({
 	style = "night",
 	transparent = true,
 })
 vim.cmd [[colorscheme tokyonight]]
 
-require('lualine').setup({
+require("lualine").setup({
 	options = {
 		icons_enabled = false,
-		component_separators = { left = '|', right = '|' },
-		section_separators = { left = '', right = '' },
+		component_separators = { left = "|", right = "|" },
+		section_separators = { left = "", right = "" },
 	},
 	sections = {
 		lualine_c = {
 			{
-				'filename',
+				"filename",
 				file_status = true,
 				path = 1 -- 0 = just filename, 1 = relative path, 2 = absolute path
 			}
@@ -112,71 +109,72 @@ require('lualine').setup({
 	}
 })
 
-require('gitsigns').setup({
-	current_line_blame = false,
-})
-
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+k.set('n', '<space>e', vim.diagnostic.open_float, opts)
+k.set('n', '[d', vim.diagnostic.goto_prev, opts)
+k.set('n', ']d', vim.diagnostic.goto_next, opts)
+k.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
-local cmp = require 'cmp'
-cmp.setup({
-	mapping = cmp.mapping.preset.insert({
-		['<C-b>'] = cmp.mapping.scroll_docs( -4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.abort(),
-		['<CR>'] = cmp.mapping.confirm({ select = true }),
-	}),
-	sources = cmp.config.sources(
-		{ { name = 'buffer' } },
-		{ { name = 'path' } }
-	)
+require("mini.completion").setup()
+k.set("i", "<CR>", function()
+  if vim.fn.pumvisible() == 1 then
+    return "<C-y>"
+  end
+  return "<CR>"
+end, { expr = true })
+
+require("mini.comment").setup()
+require("mini.pairs").setup()
+require("mini.surround").setup({
+	mappings = {
+		add = 'S',
+	}
 })
-
-require 'nvim-treesitter.configs'.setup({
-	ensure_installed = "all",
-	highlight = { enable = true },
+require("mini.jump2d").setup({
+	mappings = {
+		start_jumping = '<leader>s',
+	},
 })
+require("mini.diff").setup()
+k.set('n', '<leader>gd', MiniDiff.toggle_overlay)
 
-require("which-key").setup({})
-
-require('telescope').setup({
+local telescope = require("telescope")
+local telescope_actions = require("telescope.actions")
+telescope.setup({
 	defaults = {
 		mappings = {
 			i = {
-				["<S-Left>"] = require('telescope.actions').cycle_history_prev,
-				["<S-Right>"] = require('telescope.actions').cycle_history_next,
+				["<S-Left>"] = telescope_actions.cycle_history_prev,
+				["<S-Right>"] = telescope_actions.cycle_history_next,
 			},
 		},
 		path_display = { "truncate" }
 	},
 	pickers = {
 		find_files = {
-			find_command = { 'rg', '--files', '--hidden', '-g', '!.git', '-L' },
+			find_command = { "rg", "--files", "--hidden", "-g", "!.git", "-L" },
 			theme = "dropdown",
 		},
-		live_grep = { theme = "dropdown", },
-		buffers = { theme = "dropdown", }
+		live_grep = {
+			theme = "dropdown",
+		},
+		buffers = { 
+			theme = "dropdown",
+		}
 	},
-	extensions = { file_browser = { theme = "dropdown", },
+	extensions = {
+		file_browser = {
+			theme = "dropdown"
+		},
 	},
 })
-require("telescope").load_extension "file_browser"
+telescope.load_extension("file_browser")
 
-k.set('n', '<leader>p', '<cmd>Telescope find_files <CR>', { noremap = true })
-k.set('n', '<leader>ff', '<cmd>Telescope live_grep <CR>', { noremap = true })
-k.set('n', '<leader>bb', '<cmd>Telescope buffers <CR>', { noremap = true })
-k.set('n', '<leader>fh', '<cmd>Telescope help_tags <CR>', { noremap = true })
-k.set('n', '<leader>fb', ':Telescope file_browser disable_devicons=true <CR>', { noremap = true })
-k.set('n', '<leader>fc', ':Telescope file_browser disable_devicons=true file_browser path=%:p:h <CR>', { noremap = true })
+local telescope_builtin = require("telescope.builtin")
+k.set('n', '<leader>p', telescope_builtin.find_files, { noremap = true })
+k.set('n', '<leader>ff', telescope_builtin.live_grep, { noremap = true })
+k.set('n', '<leader>fb', telescope_builtin.buffers, { noremap = true })
+k.set('n', '<leader>fh', telescope_builtin.help_tags, { noremap = true })
+k.set('n', '<leader>fp', function() telescope.extensions.file_browser.file_browser({ disable_devicons = true }) end, { noremap = true })
+k.set('n', '<leader>fc', function() telescope.extensions.file_browser.file_browser({ disable_devicons = true, path="%:p:h" }) end, { noremap = true })
 
-require("nvim-autopairs").setup {}
-require("nvim-surround").setup {}
-k.set('n', '<leader>s', '<Plug>(easymotion-overwin-f)')
-k.set('n', '<leader><leader>s', '<Plug>(easymotion-overwin-f)')
-
-require('Comment').setup()
