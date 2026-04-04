@@ -1,0 +1,8 @@
+font-family = "Iosevka"
+font-size = 24
+background-opacity = 0.85
+theme = "TokyoNight"
+macos-titlebar-style = "tabs"
+# treat ctrl+enter as enter
+keybind = "ctrl+enter=text:\r"
+
