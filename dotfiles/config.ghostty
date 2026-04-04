@@ -3,6 +3,7 @@ font-size = 24
 background-opacity = 0.85
 theme = "TokyoNight"
 macos-titlebar-style = "tabs"
+keybind = global:ctrl+0=toggle_visibility
 # treat ctrl+enter as enter
 keybind = "ctrl+enter=text:\r"
 
