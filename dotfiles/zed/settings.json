@@ -12,10 +12,11 @@
   "indent_guides": { "enabled": false },
   "sticky_scroll": { "enabled": true },
   "toolbar": {
-    "agent_review": false,
+    // "breadcrumbs": false,
     // "code_actions": false,
     // "quick_actions": false,
     // "selections_menu": false,
+    "agent_review": false,
   },
   "git_panel": { "dock": "right" },
   "project_panel": { "dock": "right" },
@@ -36,6 +37,7 @@
   "ui_font_family": "Iosevka",
   "buffer_font_family": "Iosevka",
   "buffer_font_size": 16,
+  "buffer_line_height": { "custom": 1.5 },
   "scrollbar": { "show": "never" },
   "tab_bar": { "show": false },
   "diagnostics": {
