@@ -1,9 +1,12 @@
-font-family = "Iosevka"
-font-size = 24
+font-family = "FiraCode"
+font-size = 20
+adjust-cell-width = -3
 background-opacity = 0.85
 theme = "TokyoNight"
 macos-titlebar-style = "tabs"
 keybind = global:ctrl+0=toggle_visibility
 # treat ctrl+enter as enter
 keybind = "ctrl+enter=text:\r"
+# treat shift+enter as newline
+keybind = shift+enter=text:\x1b\r
 

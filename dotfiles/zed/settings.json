@@ -8,6 +8,9 @@
 // from the command palette or from `Zed` application menu.
 {
   "title_bar": { "show_sign_in": false },
+  "buffer_font_features": {
+    "calt": false,
+  },
   "show_whitespaces": "boundary",
   "indent_guides": { "enabled": false },
   "sticky_scroll": { "enabled": true },
@@ -34,16 +37,19 @@
   "telemetry": { "diagnostics": false },
   "vim_mode": true,
   "ui_font_size": 16,
-  "ui_font_family": "Iosevka",
-  "buffer_font_family": "Iosevka",
+  "ui_font_family": ".SystemUIFont",
+  "buffer_font_family": "Fira Code",
   "buffer_font_size": 16,
   "buffer_line_height": { "custom": 1.5 },
   "scrollbar": { "show": "never" },
   "tab_bar": { "show": false },
   "diagnostics": {
-    "inline": { "enabled": true },
+    "inline": {
+      "enabled": true,
+      "max_severity": "warning",
+    },
   },
-  "inlay_hints": { "enabled": true },
+  // "inlay_hints": { "enabled": true },
   "lsp": {
     "deno": {
       "settings": {
@@ -64,15 +70,6 @@
       "formatter": "language_server",
     },
     "TypeScript": {
-      "language_servers": [
-        "deno",
-        "!typescript-language-server",
-        "!vtsls",
-        "!eslint",
-      ],
-      "formatter": "language_server",
-    },
-    "TSX": {
       "language_servers": [
         "deno",
         "!typescript-language-server",
