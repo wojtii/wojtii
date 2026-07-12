@@ -34,7 +34,7 @@ o.cursorline = true
 local k = vim.keymap
 k.set('', 'Y', 'y$', { noremap = true }) -- yank to the end of line
 k.set('n', 'Q', 'q', { noremap = true }) -- disable entering ex mode
-k.set('n', '<leader>fe', ':Lexplore!<CR>', { noremap = true }) -- togle netrw
+-- k.set('n', '<leader>fe', ':Lexplore!<CR>', { noremap = true }) -- togle netrw
 k.set('n', '<M-Down>', ':resize -2<CR>', { noremap = true })
 k.set('n', '<M-Up>', ':resize +2<CR>', { noremap = true })
 k.set('n', '<M-Right>', ':vertical resize -2<CR>', { noremap = true })
@@ -90,7 +90,7 @@ require("tokyonight").setup({
 	style = "night",
 	transparent = true,
 })
-vim.cmd [[colorscheme tokyonight]]
+vim.cmd.colorscheme("tokyonight")
 
 require("lualine").setup({
 	options = {
@@ -108,12 +108,6 @@ require("lualine").setup({
 		}
 	}
 })
-
-local opts = { noremap = true, silent = true }
-k.set('n', '<space>e', vim.diagnostic.open_float, opts)
-k.set('n', '[d', vim.diagnostic.goto_prev, opts)
-k.set('n', ']d', vim.diagnostic.goto_next, opts)
-k.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 require("mini.completion").setup()
 k.set("i", "<CR>", function()
@@ -137,6 +131,9 @@ require("mini.jump2d").setup({
 })
 require("mini.diff").setup()
 k.set('n', '<leader>gd', MiniDiff.toggle_overlay)
+
+require("mini.files").setup()
+k.set('n', '<leader>fe', MiniFiles.open, { noremap = true })
 
 local telescope = require("telescope")
 local telescope_actions = require("telescope.actions")
